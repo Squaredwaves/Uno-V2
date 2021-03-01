@@ -36,10 +36,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _UD:
-        rgblight_sethsv (HSV_PURPLE);
+        rgblight_sethsv (HSV_PURPLE); //sets LED to purple when in Up/Down
         break;
     case _LR:
-        rgblight_sethsv (HSV_WHITE);
+        rgblight_sethsv (HSV_WHITE); //sets LED to white when in Left/Right
     }
  return state;
 };
@@ -49,7 +49,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 void encoder_update_user(uint8_t index, bool clockwise) {
 if (index == 0){    
-    if(IS_LAYER_ON(_LR)) {
+    if(IS_LAYER_ON(_LR)) { //woves cursor left or right 
         if (clockwise) {
             tap_code(KC_LEFT);
         } 
@@ -57,7 +57,7 @@ if (index == 0){
             tap_code(KC_RIGHT);
         }
     }
-    if(IS_LAYER_ON(_UD)) {
+    if(IS_LAYER_ON(_UD)) { //moves cursor up or down
         if (clockwise) {
              tap_code(KC_UP);
         } else {
